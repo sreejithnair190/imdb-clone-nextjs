@@ -1,12 +1,13 @@
 import Loading from "@/app/loading";
-import React from "react";
 import { Suspense } from "react";
+import dynamic from "next/dynamic";
 
 interface NavItemProps {
   title: string;
   param: string;
 }
-const DynamicNavItem = React.lazy(() => import("./dynamicNavItem"));
+
+const DynamicNavItem = dynamic(() => import("./dynamicNavItem"));
 
 function NavItem({ title, param }: NavItemProps) {
   return (
