@@ -3,7 +3,7 @@ import React from "react";
 
 const SearchPage = async ({ params }: { params: { searchTerm: string } }) => {
   const searchTerm = params.searchTerm;
-  console.log(searchTerm);
+  // console.log(searchTerm);
 
   const res = await fetch(
     `https://api.themoviedb.org/3/search/movie/?api_key=${process.env.API_KEY}&query=${searchTerm}&language=en-US&page=1`
@@ -11,7 +11,7 @@ const SearchPage = async ({ params }: { params: { searchTerm: string } }) => {
   const data = await res.json();
 
   const results = data.results;
-  console.log(results);
+  // console.log(results);
   
   return (
     <div>

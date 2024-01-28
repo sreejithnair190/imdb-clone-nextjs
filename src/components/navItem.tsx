@@ -1,28 +1,18 @@
-"use client";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import Loading from "@/app/loading";
+import React from "react";
+import { Suspense } from "react";
 
 interface NavItemProps {
   title: string;
   param: string;
 }
+const DynamicNavItem = React.lazy(() => import("./dynamicNavItem"));
 
 function NavItem({ title, param }: NavItemProps) {
-  const searchParams = useSearchParams();
-  const genre = searchParams.get("genre");
   return (
-    <div>
-      <Link
-        className={`hover:text-amber-500 font-semibold ${
-          genre === param
-            ? "underline underline-offset-8 decoration-4 decoration-amber-500 rounded-lg"
-            : ""
-        }`}
-        href={`/?genre=${param}`}
-      >
-        {title}
-      </Link>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <DynamicNavItem title={title} param={param} />
+    </Suspense>
   );
 }
 
